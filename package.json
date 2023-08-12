@@ -1,0 +1,18 @@
+{
+    "name": "turing-tech-backend-test",
+    "version": "1.0.0",
+    "description": "An Express.js application which interacts with the Twillo API",
+    "main": "server.js",
+    "dependencies": {
+      "express": "4.18.2",
+      "cors" : "2.8.5",
+      "body-parser" : "1.20.2",
+      "mongoose" : "7.4.3"
+    },
+    "scripts": {
+      "start": "node server.js"
+    },
+    "author": "Abdullah Arshad",
+    "license": "MIT"
+  }
+  

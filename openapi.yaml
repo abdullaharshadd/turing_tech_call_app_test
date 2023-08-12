@@ -1,0 +1,118 @@
+openapi: 3.0.0
+info:
+  title: Call Handling API
+  version: 1.0.0
+  description: API for handling calls and recordings
+servers:
+  - url: http://localhost:8080
+    description: Development server
+
+paths:
+  /:
+    get:
+      summary: Get a welcome message
+      responses:
+        '200':
+          description: Successful response
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Hello, World!
+
+  /handle_call:
+    post:
+      summary: Handle incoming call data
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CallData'
+      responses: {}  # No explicit responses defined since it's a redirect
+
+  /all_calls:
+    get:
+      summary: Get all calls
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Call'
+
+  /handle_recording:
+    post:
+      summary: Handle incoming recording data
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CallData'
+      responses: {}  # No explicit responses defined since it's a redirect
+
+components:
+  schemas:
+    Call:
+      type: object
+      properties:
+        AccountSid:
+          type: string
+        CallSid:
+          type: string
+        CallStatus:
+          type: string
+        Called:
+          type: string
+        Caller:
+          type: string
+        DialBridged:
+          type: boolean
+        DialCallDuration:
+          type: string
+        DialCallSid:
+          type: string
+        DialCallStatus:
+          type: string
+        Digits:
+          type: string
+        RecordingDuration:
+          type: string
+        RecordingSid:
+          type: string
+        RecordingUrl:
+          type: string
+
+    CallData:
+      type: object
+      properties:
+        AccountSid:
+          type: string
+        CallSid:
+          type: string
+        CallStatus:
+          type: string
+        Called:
+          type: string
+        Caller:
+          type: string
+        DialBridged:
+          type: boolean
+        DialCallDuration:
+          type: string
+        DialCallSid:
+          type: string
+        DialCallStatus:
+          type: string
+        Digits:
+          type: string
+        RecordingDuration:
+          type: string
+        RecordingSid:
+          type: string
+        RecordingUrl:
+          type: string
