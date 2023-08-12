@@ -6,13 +6,17 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = 8080;
 
+const mongodbUrl = process.env.MONGODB_URL;
+const twilio_base_url = process.env.TWILIO_BASE_URL;
+
+
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); // Parse JSON in the request body
 
 const mongoose = require('mongoose');
 
-const connectionString = 'mongodb://localhost:27017/calls';
+const connectionString = mongodbUrl + '/calls';
 
 mongoose.connect(connectionString, {
   useNewUrlParser: true,
@@ -43,15 +47,15 @@ app.post('/handle_call', (req, res) => {
       call.save()
         .then(savedCall => {
           console.log('Call data saved:', savedCall);
-          res.redirect('https://turingtechbackendtest-6556.twil.io/end_message');
+          res.redirect(twilio_base_url + '/end_message');
         })
         .catch(error => {
           console.error('Error saving call data:', error);
-          res.redirect('https://turingtechbackendtest-6556.twil.io/error');
+          res.redirect(twilio_base_url + '/error');
         });
     } catch (error) {
       console.error('Error parsing call data:', error);
-      res.redirect('https://turingtechbackendtest-6556.twil.io/error');
+      res.redirect(twilio_base_url + '/error');
     }
   });  
 
@@ -77,15 +81,15 @@ app.post('/handle_call', (req, res) => {
       call.save()
         .then(savedCall => {
           console.log('Recording data saved:', savedCall);
-          res.redirect('<your_twilo_function_url_without_route>/end_message');
+          res.redirect(twilio_base_url + '/end_message');
         })
         .catch(error => {
           console.error('Error saving recording data:', error);
-          res.redirect('<your_twilo_function_url_without_route>/error');
+          res.redirect(twilio_base_url + '/error');
         })
     } catch (error) {
       console.error('Error parsing recording data:', error);
-      res.redirect('<your_twilo_function_url_without_route>/error');
+      res.redirect(twilio_base_url + '/error');
     }
   });
 
