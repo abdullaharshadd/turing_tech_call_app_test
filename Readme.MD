@@ -7,6 +7,7 @@
 5. Replace <your_ngrok_url_here> with your ngrok url.
 6. Replace <your_verified_number_here> with your verified number.
 7. Replace <your_twilo_function_url_without_route> with your twilio function url but without the route.
+8. In server.js file, you need to provide your MONGODB_URL and TWILIO_BASE_URL to make things work.
 6. Enjoy :D
 
 ## Installation
